@@ -6,7 +6,7 @@ class manager
     public mixed $db;
     const DB_HOSTNAME = 'localhost';
     const DB_USERNAME = 'root';
-    const DB_PASSWORD = 'root';
+    const DB_PASSWORD = '';
     const DB_NAME = 'comparo_full';
 
     public function __construct()    // Constructor
