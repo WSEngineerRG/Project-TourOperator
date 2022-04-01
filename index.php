@@ -85,13 +85,13 @@
         </div>
     </div>
 <div class="flex flex-row flex-wrap place-content-center items-stretch p-8 m-auto">
-    <div class="m-5 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+    <div class="shadow-md m-5 max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
         <a href="#">
-            <img class="rounded-t-lg" src="https://flowbite.com/docs/images/blog/image-1.jpg" alt="">
+            <img class="rounded-t-lg" src="https://cdn.pixabay.com/photo/2020/07/14/16/02/manga-5404746_960_720.jpg" alt="">
         </a>
         <div class="p-5">
             <a href="#">
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Tokyo</h5>
             </a>
             <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
             <a href="#" class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
@@ -100,13 +100,13 @@
             </a>
         </div>
     </div>
-    <div class="m-5 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+    <div class="shadow-md m-5 max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
         <a href="#">
-            <img class="rounded-t-lg" src="https://flowbite.com/docs/images/blog/image-1.jpg" alt="">
+            <img class="rounded-t-lg" src="https://cdn.pixabay.com/photo/2019/02/02/07/00/kinkaku-ji-3970248_960_720.jpg" alt="">
         </a>
         <div class="p-5">
             <a href="#">
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Kyoto</h5>
             </a>
             <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
             <a href="#" class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
@@ -115,13 +115,13 @@
             </a>
         </div>
     </div>
-    <div class="m-5 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+    <div class="shadow-md m-5 max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
         <a href="#">
-            <img class="rounded-t-lg" src="https://flowbite.com/docs/images/blog/image-1.jpg" alt="">
+            <img class="rounded-t-lg" src="https://cdn.pixabay.com/photo/2017/06/17/09/23/kobe-2411608_960_720.jpg" alt="">
         </a>
         <div class="p-5">
             <a href="#">
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Kobe</h5>
             </a>
             <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
             <a href="#" class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
@@ -130,13 +130,13 @@
             </a>
         </div>
     </div>
-    <div class="m-5 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+    <div class="shadow-md m-5 max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
         <a href="#">
-            <img class="rounded-t-lg" src="https://flowbite.com/docs/images/blog/image-1.jpg" alt="">
+            <img class="rounded-t-lg" src="https://cdn.pixabay.com/photo/2017/03/09/10/39/night-view-2129238_960_720.jpg" alt="">
         </a>
         <div class="p-5">
             <a href="#">
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Nagasaki</h5>
             </a>
             <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
             <a href="#" class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
@@ -145,13 +145,13 @@
             </a>
         </div>
     </div>
-    <div class="m-5 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+    <div class="shadow-md m-5 max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
         <a href="#">
-            <img class="rounded-t-lg" src="https://flowbite.com/docs/images/blog/image-1.jpg" alt="">
+            <img class="rounded-t-lg" src="https://cdn.pixabay.com/photo/2015/04/16/15/22/hiroshima-725801_960_720.jpg" alt="">
         </a>
         <div class="p-5">
             <a href="#">
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Hiroshima</h5>
             </a>
             <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
             <a href="#" class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
@@ -160,13 +160,13 @@
             </a>
         </div>
     </div>
-    <div class="m-5 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+    <div class="shadow-md m-5 max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
         <a href="#">
-            <img class="rounded-t-lg" src="https://flowbite.com/docs/images/blog/image-1.jpg" alt="">
+            <img class="rounded-t-lg" src="https://cdn.pixabay.com/photo/2019/02/02/18/38/japan-3971137_960_720.jpg" alt="">
         </a>
         <div class="p-5">
             <a href="#">
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Sapporo</h5>
             </a>
             <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
             <a href="#" class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
