@@ -3,26 +3,29 @@
 class review
 {
 
-    private $id;
-    private $message;
-    private $author;
+    protected mixed $id;
+    protected mixed $message;
+    protected mixed $author;
 
     function __construct($data)
     {
-        
+        $this->id = $data['id'];
+        $this->message = $data['message'];
+        $this->author = $data['author'];
     }
 
-    function getId(){
-
+    function getId()
+    {
+        return $this->id;
     }
 
-    function getVAlue(){
-
+    function getVAlue()
+    {
+        return $this->message;
     }
 
-    function getAuthor(){
-
+    function getAuthor()
+    {
+        return $this->author;
     }
-
-    
 }
