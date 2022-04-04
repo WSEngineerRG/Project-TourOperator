@@ -1,11 +1,4 @@
 <?php
-//    if (isset($_GET['admin'])) {
-//
-//        include "./Utils/Admin/PanelAdmin.php";
-//    }else{
-//        include "./Utils/Main.php";
-//    }
-
     require_once 'config/DB_Connect.php';
     include 'config/autoloader.php';
     $manager = new Manager($db);
@@ -78,35 +71,35 @@
     <!--Carousel-->
     <div id="default-carousel" data-carousel="slide" class="relative">
 
-        <div class="overflow-hidden relative rounded-lg h-screen sm:h-64 2xl:h-96">
+        <div class="overflow-hidden relative rounded h-screen sm:h-4/6 2xl:h-96">
 
             <div class="duration-1000  ease-in-out absolute inset-0 interval transition-all transform translate-x-0"
                  data-carousel-item="active">
-                <img src="https://flowbite.com/docs/images/carousel/carousel-1.svg"
+                <img src="https://imgs.search.brave.com/phdxzAHbfQScwcVDb7YFj7J8NV-y4G76V_1traWiZRA/rs:fit:1200:1080:1/g:ce/aHR0cHM6Ly9nZXR3/YWxscGFwZXJzLmNv/bS93YWxscGFwZXIv/ZnVsbC85LzIvZi8x/MDkwNTY3LWRvd25s/b2FkLW9zYWthLXdh/bGxwYXBlci0xOTIw/eDEwODAtZm9yLW1h/Y2Jvb2suanBn"
                      class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="...">
             </div>
 
             <div class="duration-1000  ease-in-out absolute inset-0 transition-all transform translate-x-full"
                  data-carousel-item="">
-                <img src="https://flowbite.com/docs/images/carousel/carousel-2.svg"
+                <img src="https://imgs.search.brave.com/pNui0SMRszdT1VfdYHaHqclXm3NySH6PZK7dx1FQ_js/rs:fit:1200:1080:1/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJ0YWcuY29t/L3dhbGxwYXBlci9m/dWxsL2QvZi8xLzEw/Njc4NC10b2t5by13/YWxscGFwZXItMTky/MHgxMDgwLWltYWdl/LmpwZw"
                      class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="...">
             </div>
 
             <div class="hidden duration-1000  ease-in-out absolute inset-0 transition-all transform"
                  data-carousel-item="">
-                <img src="https://flowbite.com/docs/images/carousel/carousel-3.svg"
+                <img src="https://imgs.search.brave.com/6QeeRBajMMHOKqSVFpXT4qYqDbJquRVDpmgld7UuUNA/rs:fit:1200:1080:1/g:ce/aHR0cHM6Ly9jZG4u/d2FsbHBhcGVyc2Fm/YXJpLmNvbS84My82/OS9lRmdSMm4uanBn"
                      class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="...">
             </div>
 
             <div class="hidden duration-1000  ease-in-out absolute inset-0 transition-all transform"
                  data-carousel-item="">
-                <img src="https://flowbite.com/docs/images/carousel/carousel-4.svg"
+                <img src="https://imgs.search.brave.com/jQdSCXA-7mpg5T-OLEgDeKirNABMFKrIPwBbsx9Jou4/rs:fit:1200:1080:1/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJhY2Nlc3Mu/Y29tL2Z1bGwvNTAz/MzUuanBn"
                      class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="...">
             </div>
 
             <div class="duration-1000  ease-in-out absolute inset-0 transition-all transform -translate-x-full"
                  data-carousel-item="">
-                <img src="https://flowbite.com/docs/images/carousel/carousel-4.svg"
+                <img src="https://imgs.search.brave.com/sS7YuQVrxO8jmvDWavbzEIzRRO399Vre52Emvmrn02I/rs:fit:1200:1080:1/g:ce/aHR0cHM6Ly93d3cu/c2V0YXN3YWxsLmNv/bS93cC1jb250ZW50/L3VwbG9hZHMvMjAx/Ny8xMi9DaXR5LVNr/eWxpbmUtV2FsbHBh/cGVyLTAyLTE5MjB4/MTA4MC5qcGc"
                      class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="...">
             </div>
         </div>
@@ -141,22 +134,25 @@
                     </a>
                     <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise
                         technology acquisitions of 2021 so far, in reverse chronological order.</p>
-                    <a href="#"
-                       class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                        Read more
-                        <svg class="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
-                             xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd"
-                                  d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                                  clip-rule="evenodd"></path>
-                        </svg>
-                    </a>
+                    <form action="./src/Pages/Destinations.php?City_name=<?= $getOperators[0]->getName() ?>">
+                       <input type="hidden" name="City_name" value="<?= $getOperators[0]->getName() ?>">
+                        <button type="submit" href="#"
+                           class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            Read more
+                            <svg class="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                      d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                                      clip-rule="evenodd"></path>
+                            </svg>
+                        </button>
+                    </form>
                 </div>
             </div>
             <div class="shadow-md m-5 max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
                 <a href="#">
                     <img class="rounded-t-lg"
-                         src="<?= $getOperators[1]->getImage() ?>" alt=".<?= $getOperators[1]->getName() ?>.">
+                         src="<?= $getOperators[1]->getImage() ?>" alt="<?= $getOperators[1]->getName() ?>">
                 </a>
                 <div class="p-5">
                     <a href="#">
