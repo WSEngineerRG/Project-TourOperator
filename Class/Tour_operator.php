@@ -64,7 +64,7 @@ class Tour_operator
         return $this->certificate;
     }
 
-    function getDestinations()
+    function getAllDestination()
     {
         return $this->destinations;
     }

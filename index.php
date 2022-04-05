@@ -2,7 +2,7 @@
     require_once 'config/DB_Connect.php';
     include 'config/autoloader.php';
     $manager = new Manager($db);
-    $getOperators = $manager->getOperators();
+    $getOperators = $manager->getAllOperator();
 ?>
 <doctype html>
     <html lang="en">

@@ -1,8 +1,9 @@
 <?php
 
+
 class Manager
 {
-    private $db;
+    private mixed $db;
 
     public function __construct($db)
     {
@@ -21,13 +22,18 @@ class Manager
         return $this->db->query($query);
     }
 
+    public function db_prepare($query)
+    {
+        return $this->db->prepare($query);
+    }
+
     public function addOperator(string $name, string $link): void
     {
         $query = "INSERT INTO comparo_full.tour_operator (name, link) VALUES ('$name', '$link')";
         $this->db_query($query);
     }
 
-    public function getOperators(): array
+    public function getAllOperator(): array
     {
         $query = "SELECT * FROM comparo_full.tour_operator";
         $result = $this->db_query($query);
@@ -44,15 +50,27 @@ class Manager
         $this->db_query($query);
     }
 
-    public function getDestinations(): array
+    public function getAllDestination(): array
     {
         $query = "SELECT * FROM comparo_full.destination";
         $result = $this->db_query($query);
         $destinations = [];
-        while ($row = $result->fetch_assoc()) {
-            $destinations[] = $row;
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            $destinations[] = new Tour_operator($row);
         }
         return $destinations;
+    }
+
+    public function getOperatorByDestination(): array
+    {
+        $location = $_GET["City_name"];
+        $query = "SELECT * FROM comparo_full.tour_operator INNER JOIN comparo_full.destination ON comparo_full.tour_operator.id = comparo_full.destination.tour_operator_id WHERE comparo_full.destination.location='$location'";
+        $results = $this->db_query($query);
+        $operatorsbydestinations = [];
+        while ($row = $results->fetch(PDO::FETCH_ASSOC)) {
+            $operatorsbydestinations[] = new Tour_operator($row);
+        }
+        return $operatorsbydestinations;
     }
 
     public function countOperator(): int
