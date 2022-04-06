@@ -1,11 +1,4 @@
-<?php
-    require __DIR__ . '/../../config/autoloader.php';
-    require __DIR__ . '/../../config/DB_Connect.php';
-    $manager = new Manager($db);
-    $getOperators = $manager->getAllOperator();
-    $getDestinations = $manager->getOperatorByDestination();
-?>
-
+<?php ?>
 <doctype html>
     <html lang="en">
     <head>
@@ -66,60 +59,3 @@
             </li>
         </ol>
     </nav>
-    <main class="p-8 flex flex-row justify-center">
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-            <table class="items-center w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                <thead class="text-xs uppercase bg-gray-700 text-gray-400">
-                <tr>
-                    <th scope="col" class="px-6 py-3">
-                        Operator
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Destinations
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Price
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Options
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        <span class="sr-only">Edit</span>
-                    </th>
-                </tr>
-                </thead>
-            </table>
-            <?php foreach ($getDestinations as $Showdestinations) {    $getCertificate = $manager->getCertificate($Showdestinations->getId()); ?>
-                <table class="items-center w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                    <thead class="text-xs uppercase bg-gray-700 text-gray-400">
-                    <tbody>
-                        <tr class="border-b bg-gray-800 border-gray-700 hover:bg-gray-600">
-                            <th scope="row" class="px-8 py-4 text-left font-medium text-white whitespace-nowrap">
-                                <?= $Showdestinations->tour_operator->getName() ?>
-                            </th>
-                            <td class="px-12 py-4 font-medium text-right whitespace-nowrap">
-                                <?= $Showdestinations->getLocation() ?>
-                            </td>
-                            <td class="px-4 py-4 font-medium  whitespace-nowrap">
-                                <?= $Showdestinations->getPrice() . '<strong class="text-green-500"> $</strong>' ?>
-                            </td>
-                            <td class="px-12 py-4 text-right">
-                                <a href="#" class="font-medium text-blue-500 hover:underline">Edit</a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            <?php } ?>
-        </div>
-    </main>
-
-
-
-
-
-
-
-
-
-
-

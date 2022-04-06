@@ -19,12 +19,12 @@ class Tour_operator
 //    protected bool $is_valid; simple version !
 
     // constructor
-    public function __construct(array $donnees)
+    public function __construct($donnees)
     {
         $this->hydrate($donnees);
     }
     // hydrate
-    public function hydrate(array $donnees)
+    public function hydrate($donnees)
     {
         $this->id = $donnees['id'];
         $this->name = $donnees['name'];
