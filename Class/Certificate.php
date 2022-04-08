@@ -9,6 +9,7 @@ class Certificate
     protected mixed $expireAt;
     protected mixed $signatory;
 
+
     function _construct(array $donnees)
     {
         $this->hydrate($donnees);

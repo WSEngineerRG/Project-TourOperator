@@ -2,7 +2,8 @@
     require __DIR__ . '/../../config/autoloader.php';
     require __DIR__ . '/../../config/DB_Connect.php';
     $manager = new Manager($db);
-    $getOperators = $manager->getOperators();
+    $getOperators = $manager->getAllOperator();
+    $getDestinations = $manager->getOperatorByDestination();
 ?>
 
 <doctype html>
@@ -41,76 +42,87 @@
                           clip-rule="evenodd"></path>
                 </svg>
             </button>
-            <div class="hidden w-full md:block md:w-auto" id="mobile-menu">
-                <ul class="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
-                    <li>
-                        <a href="#"
-                           class="block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
-                           aria-current="page">Home</a>
-                    </li>
-                    <li>
-                        <a href="#"
-                           class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About</a>
-                    </li>
-                    <li>
-                        <a href="#"
-                           class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Services</a>
-                    </li>
-                    <li>
-                        <a href="#"
-                           class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Pricing</a>
-                    </li>
-                    <li>
-                        <a href="#"
-                           class="block py-2 pr-4 pl-3 text-gray-700 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Contact</a>
-                    </li>
-                </ul>
-            </div>
         </div>
     </nav>
-
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <div class="flex justify-center p-4">
-            <label for="table-search" class="sr-only">Search</label>
-            <div class="relative mt-1">
-                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                    <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20"
-                         xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                              d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                              clip-rule="evenodd"></path>
-                    </svg>
-                </div>
-                <input type="text" id="table-search"
-                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                       placeholder="Search Destinations">
-            </div>
-        </div>
-        <div class="flex flex-row flex-wrap place-content-center items-stretch p-8 m-auto">
-            <div class="shadow-md m-5 max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
-                <a href="#">
-                    <img class="rounded-t-lg"
-                         src="<?= $getOperators[0]->getImage() ?>" alt=".<?= $getOperators[0]->getName() ?>.">
+    <nav class="flex justify-center p-8" aria-label="Breadcrumb">
+        <ol class="inline-flex items-center space-x-1 md:space-x-3">
+            <li class="inline-flex items-center">
+                <a href="../../index.php" class="inline-flex items-center text-sm font-medium text-gray-400 hover:text-white dark:text-gray-400 dark:hover:text-white">
+                    <svg class="mr-2 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+                    Home
                 </a>
-                <div class="p-5">
-                    <a href="#">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><?= $getOperators[0]->getName() ?></h5>
-                    </a>
-                    <h3><?= $getOperators[0]->getDestinations() ?></h3>
-                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise
-                        technology acquisitions of 2021 so far, in reverse chronological order.</p>
-                    <form action="./src/Pages/Destinations.php?City_name=<?= $getOperators[0]->getName() ?>">
-                        <input type="hidden" name="City_name" value="<?= $getOperators[0]->getName() ?>">
-                        <button type="submit" href="#"
-                                class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                            Read more
-                            <svg class="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
-                                 xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                      d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                                      clip-rule="evenodd"></path>
-                            </svg>
-                        </button>
-                    </form>
+            </li>
+            <li>
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                    <a href="#" class="ml-1 text-sm font-medium text-gray-400 hover:text-white md:ml-2 dark:text-gray-400 dark:hover:text-white">Destinations</a>
                 </div>
-            </div>
+            </li>
+            <li aria-current="page">
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                    <span class="ml-1 text-sm font-medium text-gray-400 md:ml-2 dark:text-gray-500"><?= $_GET["City_name"] ?></span>
+                </div>
+            </li>
+        </ol>
+    </nav>
+    <main class="p-8 flex flex-row justify-center">
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <table class="items-center w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                <thead class="text-xs uppercase bg-gray-700 text-gray-400">
+                <tr>
+                    <th scope="col" class="px-6 py-3">
+                        Operator
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Destinations
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Price
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Options
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        <span class="sr-only">Edit</span>
+                    </th>
+                </tr>
+                </thead>
+            </table>
+            <?php foreach ($getDestinations as $Showdestinations) { ?>
+                <table class="items-center w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs uppercase bg-gray-700 text-gray-400">
+                    <tbody>
+                        <tr class="border-b bg-gray-800 border-gray-700 hover:bg-gray-600">
+                            <th scope="row" class="px-8 py-4 text-left font-medium text-white whitespace-nowrap">
+                                <?= $Showdestinations->tour_operator->getName() ?>
+                            </th>
+                            <td class="px-12 py-4 font-medium text-right whitespace-nowrap">
+                                <?= $Showdestinations->getLocation() ?>
+                            </td>
+                            <td class="px-4 py-4 font-medium  whitespace-nowrap">
+                                <?= $Showdestinations->getPrice() . '<strong class="text-green-500"> $</strong>' ?>
+                            </td>
+                            <form action="./Review.php?City_name=<?= $Showdestinations->getLocation() ?>">
+                                <input type="hidden" name="City_name" value="<?= $Showdestinations->getLocation() ?>">
+                                <td class="px-12 py-4 text-right">
+                                    <button type="submit" class="font-medium text-blue-500 hover:underline">Edit</button>
+                                </td>
+                            </form>
+                        </tr>
+                    </tbody>
+                </table>
+            <?php } ?>
+        </div>
+    </main>
+
+
+
+
+
+
+
+
+
+
+
