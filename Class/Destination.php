@@ -92,7 +92,7 @@ class Destination
     /**
      * @param mixed $tour_operator_id
      */
-    public function setTourOperatorId(mixed $tour_operator_id): void
+    public function setTour_operator_id(mixed $tour_operator_id): void
     {
         $this->tour_operator_id = $tour_operator_id;
     }

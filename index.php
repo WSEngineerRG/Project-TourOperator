@@ -4,16 +4,17 @@
     $manager = new Manager($db);
     $getOperators = $manager->getAllDestination();
 
-
+    if (isset($_POST['search'])) {
         if (isset($_GET['search']) && !empty($_GET['search'])) {
             $getOperators = $manager->getSearch();
-        }else{
+        } else {
             $getOperators = $manager->getAllDestination();
         }
 
         if (empty($_GET['search'] || !isset($_GET['search']) || $manager->getSearch() == null)) {
             $getOperators = $manager->getAllDestination();
         }
+    }
 
 ?>
 <doctype html>
