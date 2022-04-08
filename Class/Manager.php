@@ -135,7 +135,7 @@ class Manager
     {
         $query = "SELECT COUNT(*) FROM comparo_full.tour_operator";
         $result = $this->db_query($query);
-        $row = $result->fetch_row();
+        $row = $result->fetch();
         return $row[0];
     }
 
@@ -144,7 +144,7 @@ class Manager
         // $query = "SELECT COUNT(*) FROM comparo_full.tour_operator WHERE is_premium = 1"; Old method !
         $query = "SELECT COUNT(*) FROM comparo_full.tour_operator where id = comparo_full.certificate.tour_operator_id";
         $result = $this->db_query($query);
-        $row = $result->fetch_row();
+        $row = $result->fetch();
         return $row[0];
     }
 
@@ -152,13 +152,14 @@ class Manager
     {
         $query = "SELECT COUNT(*) FROM comparo_full.destination";
         $result = $this->db_query($query);
-        $row = $result->fetch_row();
+        $row = $result->fetch();
         return $row[0];
     }
 
     public function countReviews(): int
     {
-        $query = "SELECT COUNT(*) FROM comparo_full.review";
+        $id = $_GET['id'];
+        $query = "SELECT COUNT(*) FROM comparo_full.review WHERE comparo_full.review.tour_operator_id = $id";
         $result = $this->db_query($query);
         $row = $result->fetch();
         return $row[0];
