@@ -89,7 +89,7 @@
                 </tr>
                 </thead>
             </table>
-            <?php foreach ($getDestinations as $Showdestinations) { ?>
+            <?php foreach ($getDestinations as $Showdestinations) {?>
                 <table class="items-center w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead class="text-xs uppercase bg-gray-700 text-gray-400">
                     <tbody>
@@ -98,15 +98,16 @@
                                 <?= $Showdestinations->tour_operator->getName() ?>
                             </th>
                             <td class="px-12 py-4 font-medium text-right whitespace-nowrap">
-                                <?= $Showdestinations->getLocation() ?>
+                                <?= $Showdestinations->getLocation()  .' '. $Showdestinations->getOperatorId()?>
                             </td>
                             <td class="px-4 py-4 font-medium  whitespace-nowrap">
                                 <?= $Showdestinations->getPrice() . '<strong class="text-green-500"> $</strong>' ?>
                             </td>
-                            <form action="./Review.php?City_name=<?= $Showdestinations->getLocation() ?>">
-                                <input type="hidden" name="City_name" value="<?= $Showdestinations->getLocation() ?>">
+                            <form action="./Review.php?City_name=<?= $Showdestinations->getLocation()?>" method="get">
+                                <input type="hidden" name="City_name" value="<?= $Showdestinations->getLocation()?>">
+                                <input type="hidden" name="id" value="<?= $Showdestinations->getOperatorId()?>">
                                 <td class="px-12 py-4 text-right">
-                                    <button type="submit" class="font-medium text-blue-500 hover:underline">Edit</button>
+                                    <button type="submit" class="font-medium text-blue-500 hover:underline">Avis</button>
                                 </td>
                             </form>
                         </tr>
@@ -115,7 +116,6 @@
             <?php } ?>
         </div>
     </main>
-
 
 
 

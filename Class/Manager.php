@@ -50,6 +50,12 @@ class Manager
         $this->db_prepare($query)->execute([$location, $price, $id, $image]);
     }
 
+    public function addReview($message, $id, $author_id): void
+    {
+        $query = "INSERT INTO comparo_full.review (`message`, `tour_operator_id`, `author_id`) VALUES (?,?,?)";
+        $this->db_prepare($query)->execute([$message, $id, $author_id['id']]);
+    }
+
     public function getAllDestination(): array
     {
         $query = "SELECT * FROM comparo_full.destination GROUP BY location DESC ORDER BY id ASC";
@@ -59,6 +65,20 @@ class Manager
             $destinations[] = new Destination($row);
         }
         return $destinations;
+    }
+
+    public function getReviews($id): array
+    {
+        $query = "SELECT * FROM comparo_full.review INNER JOIN comparo_full.author ON comparo_full.review.author_id = comparo_full.author.id WHERE comparo_full.review.tour_operator_id='$id'";
+        $result = $this->db_query($query);
+        $reviews = [];
+        while ($row = $result->fetch(\PDO::FETCH_ASSOC)) {
+            $review = new Review($row);
+            $author = new Author($row);
+            $review->Author = $author;
+            $reviews[] = $review;
+        }
+        return $reviews;
     }
 
     public function getOperatorByDestination(): array
@@ -102,6 +122,13 @@ class Manager
         return $destinations;
     }
 
+    public function getAuthorByName($name)
+    {
+        $query = "SELECT id FROM comparo_full.author WHERE name='$name'";
+        $result = $this->db_query($query);
+        return $result->fetch(PDO::FETCH_ASSOC);
+    }
+
 
 
     public function countOperator(): int
@@ -126,6 +153,14 @@ class Manager
         $query = "SELECT COUNT(*) FROM comparo_full.destination";
         $result = $this->db_query($query);
         $row = $result->fetch_row();
+        return $row[0];
+    }
+
+    public function countReviews(): int
+    {
+        $query = "SELECT COUNT(*) FROM comparo_full.review";
+        $result = $this->db_query($query);
+        $row = $result->fetch();
         return $row[0];
     }
 
