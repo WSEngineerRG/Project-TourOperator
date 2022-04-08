@@ -89,7 +89,7 @@
                 </tr>
                 </thead>
             </table>
-            <?php foreach ($getDestinations as $Showdestinations) {    $getCertificate = $manager->getCertificate($Showdestinations->getId()); ?>
+            <?php foreach ($getDestinations as $Showdestinations) { ?>
                 <table class="items-center w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead class="text-xs uppercase bg-gray-700 text-gray-400">
                     <tbody>
@@ -103,9 +103,12 @@
                             <td class="px-4 py-4 font-medium  whitespace-nowrap">
                                 <?= $Showdestinations->getPrice() . '<strong class="text-green-500"> $</strong>' ?>
                             </td>
-                            <td class="px-12 py-4 text-right">
-                                <a href="#" class="font-medium text-blue-500 hover:underline">Edit</a>
-                            </td>
+                            <form action="./Review.php?City_name=<?= $Showdestinations->getLocation() ?>">
+                                <input type="hidden" name="City_name" value="<?= $Showdestinations->getLocation() ?>">
+                                <td class="px-12 py-4 text-right">
+                                    <button type="submit" class="font-medium text-blue-500 hover:underline">Edit</button>
+                                </td>
+                            </form>
                         </tr>
                     </tbody>
                 </table>

@@ -6,6 +6,7 @@ class Destination
     protected mixed $location;
     protected mixed $price;
     protected mixed $image;
+    protected mixed $tour_operator_id;
     public mixed $tour_operator;
     public mixed $certificate;
 
@@ -44,6 +45,17 @@ class Destination
         return $this->price;
     }
 
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    public function getOperatorId()
+    {
+        return $this->tour_operator_id;
+    }
+
     /**
      * @param mixed $id
      */
@@ -52,13 +64,6 @@ class Destination
         $this->id = $id;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getImage(): mixed
-    {
-        return $this->image;
-    }
 
     /**
      * @param mixed $location
@@ -82,6 +87,14 @@ class Destination
     public function setImage(mixed $image): void
     {
         $this->image = $image;
+    }
+
+    /**
+     * @param mixed $tour_operator_id
+     */
+    public function setTourOperatorId(mixed $tour_operator_id): void
+    {
+        $this->tour_operator_id = $tour_operator_id;
     }
 
 }

@@ -27,10 +27,10 @@ class Manager
         return $this->db->prepare($query);
     }
 
-    public function addOperator(string $name, string $link): void
+    public function addOperator($name, $link): void
     {
-        $query = "INSERT INTO comparo_full.tour_operator (name, link) VALUES ('$name', '$link')";
-        $this->db_query($query);
+        $query = "INSERT INTO comparo_full.tour_operator (`name`, `link`, `id`) VALUES (?,?,?)";
+        $this->db_prepare($query)->execute([$name, $link, $this->db->lastInsertId()]);
     }
 
     public function getAllOperator(): array
@@ -44,15 +44,15 @@ class Manager
         return $operators;
     }
 
-    public function addDestination(string $location, string $price): void
+    public function addDestination($location, $price, $id, $image): void
     {
-        $query = "INSERT INTO comparo_full.destination (location, price) VALUES ('$location', '$price')";
-        $this->db_query($query);
+        $query = "INSERT INTO comparo_full.destination (`location`, `price`, `tour_operator_id`, `image`) VALUES (?,?,?,?)";
+        $this->db_prepare($query)->execute([$location, $price, $id, $image]);
     }
 
     public function getAllDestination(): array
     {
-        $query = "SELECT * FROM comparo_full.destination GROUP BY location DESC";
+        $query = "SELECT * FROM comparo_full.destination GROUP BY location DESC ORDER BY id ASC";
         $result = $this->db_query($query);
         $destinations = [];
         while ($row = $result->fetch(\PDO::FETCH_GROUP|\PDO::FETCH_UNIQUE)) {
@@ -88,6 +88,18 @@ class Manager
             $certificates[] = $destinations;
         }
         return $certificates;
+    }
+
+    public function getSearch(): array
+    {
+        $search = $_GET['search'];
+        $query = "SELECT * FROM comparo_full.destination WHERE location  LIKE '%$search%' GROUP BY location DESC";
+        $result = $this->db_query($query);
+        $destinations = [];
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            $destinations[] = new Destination($row);
+        }
+        return $destinations;
     }
 
 
