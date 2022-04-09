@@ -8,7 +8,6 @@ class Destination
     protected mixed $image;
     protected mixed $tour_operator_id;
     public mixed $tour_operator;
-    public mixed $certificate;
 
     function __construct($donnees)
     {

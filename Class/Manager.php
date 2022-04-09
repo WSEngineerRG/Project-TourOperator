@@ -56,6 +56,14 @@ class Manager
         $this->db_prepare($query)->execute([$message, $id, $author_id['id']]);
     }
 
+    public function addCertificate($id, $date, $sign): void
+    {
+        $query = "INSERT INTO comparo_full.certificate (`tour_operator_id`, `expires_at`, `signatory`) VALUES (?,?,?)";
+        $this->db_prepare($query)->execute([$id, $date, $sign]);
+        var_dump($this->db_prepare($query));
+        die;
+    }
+
     public function getAllDestination(): array
     {
         $query = "SELECT * FROM comparo_full.destination GROUP BY location DESC ORDER BY id ASC";
@@ -81,6 +89,20 @@ class Manager
         return $reviews;
     }
 
+    public function getScoreById($id): array
+    {
+        $query = "SELECT * FROM comparo_full.score INNER JOIN comparo_full.author ON comparo_full.score.author_id = comparo_full.author.id WHERE comparo_full.score.tour_operator_id='$id')";
+        $result = $this->db_query($query);
+        $scores = [];
+        while ($row = $result->fetch(\PDO::FETCH_ASSOC)) {
+            $score = new Score($row);
+            $author = new Author($row);
+            $score->Author = $author;
+            $scores[] = $score;
+        }
+        return $scores;
+    }
+
     public function getOperatorByDestination(): array
     {
         $location = $_GET['City_name'];
@@ -98,14 +120,14 @@ class Manager
 
     public function getCertificate($id): array
     {
-        $query = "SELECT * FROM comparo_full.certificate INNER JOIN  comparo_full.destination ON comparo_full.destination.tour_operator_id = comparo_full.certificate.tour_operator_id WHERE comparo_full.destination.id='$id'";
+        $query = "SELECT * FROM comparo_full.certificate INNER JOIN  comparo_full.tour_operator ON comparo_full.tour_operator.id = comparo_full.certificate.tour_operator_id WHERE comparo_full.tour_operator.id='$id'";
         $result = $this->db_query($query);
         $certificates = [];
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-            $destinations = new Destination($row);
+            $tour_operator = new Tour_operator($row);
             $certificate = new Certificate($row);
-            $destinations->certificate = $certificate;
-            $certificates[] = $destinations;
+            $tour_operator->Certificate = $certificate;
+            $certificates[] = $tour_operator;
         }
         return $certificates;
     }
@@ -172,5 +194,52 @@ class Manager
     {
         $this->db = $db;
     }
+
+
+
+    //Options
+
+    public function getSendAtById($id)
+    {
+        $query = "SELECT comparo_full.review.send_at FROM comparo_full.review WHERE id = $id";
+        $result = $this->db_query($query);
+        $results = $result->fetch(PDO::FETCH_ASSOC);
+        return $results;
+    }
+
+    public function getOperatorById($id)
+    {
+        $query = "SELECT * FROM comparo_full.tour_operator WHERE id = $id";
+        $result = $this->db_query($query);
+        $results = $result->fetch(PDO::FETCH_ASSOC);
+        return $results;
+    }
+
+    public function getDestinationById($id)
+    {
+        $query = "SELECT * FROM comparo_full.destination WHERE id = $id";
+        $result = $this->db_query($query);
+        $results = $result->fetch(PDO::FETCH_ASSOC);
+        return $results;
+    }
+
+    //Update
+
+    public function updateOperatorById($id, $name, $link, $image)
+    {
+        $query = "UPDATE comparo_full.tour_operator SET comparo_full.tour_operator.name = '$name', comparo_full.tour_operator.link = '$link', comparo_full.tour_operator.image = '$image' WHERE comparo_full.tour_operator.id = $id";
+        $result = $this->db_query($query);
+        return $result;
+    }
+
+    public function updateDestinationById($id, $location, $price, $operator_id, $image)
+    {
+        $query = "UPDATE comparo_full.destination SET comparo_full.destination.location = '$location', comparo_full.destination.price = '$price', comparo_full.destination.tour_operator_id = '$operator_id', comparo_full.destination.image = '$image' WHERE comparo_full.destination.id = $id";
+        $result = $this->db_query($query);
+        var_dump($result);
+        die;
+        return $result;
+    }
+
 }
 

@@ -17,6 +17,7 @@
         <script src="tailwind.config.js"></script>
         <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.1/dist/flowbite.min.css"/>
         <link rel="icon" type="image/png" href="../../img/Brand.png" />
+        <script src="https://unpkg.com/flowbite@1.4.1/dist/datepicker.js"></script>
         <title>Admin&dash;Panel</title>
     </head>
     <body class="dark:bg-zinc-900 text-white dark:text-black">
@@ -97,7 +98,7 @@
                 Destinations</h5>
             <br>
             <div class="relative z-0 mb-6 w-full group">
-                <form action="./Process_add_destination.php" class="form" method="post"
+                <form action="../Process/Process_add_destination.php" class="form" method="post"
                 <div class="relative z-0 mb-6 w-full group">
                     <input name="New_Destination_name" value="" placeholder=' ' type="name"
                            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
@@ -122,7 +123,7 @@
                            class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Image</label>
                 </div>
                 <div class="relative z-0 mb-6 w-full group">
-                    <label for="New_Destination_Tid" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Select your country</label>
+                    <label for="New_Destination_Tid" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">choisis l'operateur</label>
                     <select id="New_Destination_Tid" name="New_Destination_Tid" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         <?php foreach ($getOperators as $search){ ?>
                         <option value="<?= $search->getId() ?>"><?= $search->getName()?> [<?= $search->getId() ?>]</option>
@@ -142,7 +143,7 @@
                 Operator</h5>
             <br>
             <div class="relative z-0 mb-6 w-full group">
-                <form action="Process_add_operator.php" class="form" method="post"
+                <form action="../Process/Process_add_operator.php" class="form" method="post"
                 <div class="relative z-0 mb-6 w-full group">
                     <input name="New_Operator_name" value="" placeholder=' ' type="name"
                            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
@@ -158,6 +159,42 @@
                            required>
                     <label for="floating_password"
                            class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Link</label>
+                </div>
+                <button type="submit"
+                        class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    Confirmer
+                </button>
+                </form>
+            </div>
+        </div>
+    <!--3nd Form-->
+        <div class="block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+            <h5 class="text-center mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Add
+                Premium</h5>
+            <br>
+                <div class="relative z-0 mb-6 w-full group">
+                    <form action="../Process/Process_add_Certificate.php" class="form" method="post">
+                    <label for="New_Destination_Tid" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">choisis l'operateur</label>
+                    <select id="New_Destination_Tid" name="New_Destination_Tid" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <?php foreach ($getOperators as $search){ ?>
+                            <option value="<?= $search->getId() ?>"><?= $search->getName()?> [<?= $search->getId() ?>]</option>
+                        <?php } ?>
+                    </select>
+                </div>
+                <div class="relative z-0 mb-6 w-full group">
+                    <input name="New_Certificate_name" value="" placeholder=' ' type="text"
+                           class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                           required>
+                    <label for="floating_password"
+                           class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Nom du Boss</label>
+                </div>
+                <div class="relative z-0 mb-6 w-full group">
+                    <div class="relative">
+                        <input name="New_Certificate_expire_at" datepicker datepicker-orientation="bottom left" datepicker-format="mm/dd/yyyy" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date">
+                        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                            <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
+                        </div>
+                    </div>
                 </div>
                 <button type="submit"
                         class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
@@ -194,12 +231,25 @@
                     </th>
                     <td class="px-6 py-4">
                         <?= $ShowOperators->getName() ?>
+                        <?php
+                          if ($manager->getCertificate($ShowOperators->getId())) {
+                              echo '<span data-tooltip-target="tooltip-default" class="text-green-500 hover:cursor-pointer">⭐</span>';?>
+                                <div id="tooltip-default" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700">
+                                      Cet Operator est certifié !
+                                    <div class="tooltip-arrow" data-popper-arrow></div>
+                                </div>
+                        <?php
+                          }
+                        ?>
                     </td>
                     <td class="px-6 py-4">
                         <?= $ShowOperators->getImage() ?>
                     </td>
                     <td class="px-6 py-4 text-right">
-                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                        <form method="get" action="Edit_Operator.php?id_Operator=<?= $ShowOperators->getId() ?>">
+                            <input type="hidden" name="id_Operator" value="<?= $ShowOperators->getId() ?>">
+                            <button type="submit" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</button>
+                        </form>
                     </td>
                 </tr>
                 <?php } ?>
@@ -241,7 +291,10 @@
                                     <?= $Showdestinations->getPrice() . '<strong class="text-green-500"> $</strong>' ?>
                                 </td>
                                 <td class="px-6 py-4 text-right">
-                                    <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                    <form method="get" action="Edit_Destination.php">
+                                        <input type="hidden" name="id_destination" value="<?= $Showdestinations->getId() ?>">
+                                        <button type="submit" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</button>
+                                    </form>
                                 </td>
                             </tr>
                             <?php } ?>

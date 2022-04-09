@@ -8,11 +8,11 @@ class Tour_operator
     protected mixed $name;
     protected mixed $link;
     protected mixed $image;
-    protected mixed $certificate;
     protected mixed $destinations;
     protected mixed $reviews;
     protected mixed $scores;
 
+    public mixed $Certificate;
     // Methods
 
 
@@ -61,7 +61,7 @@ class Tour_operator
 
     function getCertificate()
     {
-        return $this->certificate;
+        return $this->Certificate;
     }
 
     function getAllDestination()
@@ -109,7 +109,7 @@ class Tour_operator
 
     function setCertificate($certificate)
     {
-        $this->certificate = $certificate;
+        $this->Certificate = $certificate;
     }
 
     function setDestinations($destinations)

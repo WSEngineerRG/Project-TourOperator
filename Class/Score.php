@@ -5,7 +5,9 @@ class Score
     // Properties
     protected mixed $id;
     protected mixed $value;
-    protected mixed $author;
+    protected mixed $author_id;
+
+    public mixed $Author;
 
 
     function __construct(array $donnees)
@@ -50,17 +52,17 @@ class Score
      */
     public function getAuthor(): mixed
     {
-        return $this->author;
+        return $this->author_id;
     }
 
     // SETTERS
 
     /**
-     * @param mixed $author
+     * @param mixed $author_id
      */
-    public function setAuthor(mixed $author): void
+    public function setAuthor(mixed $author_id): void
     {
-        $this->author = $author;
+        $this->author_id = $author_id;
     }
 
     /**

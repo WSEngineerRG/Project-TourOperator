@@ -5,7 +5,6 @@
     $getOperators = $manager->getAllOperator();
     $getDestinations = $manager->getOperatorByDestination();
 ?>
-
 <doctype html>
     <html lang="en">
     <head>
@@ -95,7 +94,24 @@
                     <tbody>
                         <tr class="border-b bg-gray-800 border-gray-700 hover:bg-gray-600">
                             <th scope="row" class="px-8 py-4 text-left font-medium text-white whitespace-nowrap">
-                                <?= $Showdestinations->tour_operator->getName() ?>
+                                <?php
+                                echo $Showdestinations->tour_operator->getName();
+                                foreach ($manager->getCertificate($Showdestinations->getId()) as $isPremium) {
+                                    if ($isPremium->getCertificate()) {
+                                        $Link = $Showdestinations->tour_operator->getLink();?>
+                                        <a data-tooltip-target="tooltip-default" href='<?= $Link ?>'>
+                                            ⭐
+                                            <div id="tooltip-default" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700">
+                                                <?= $Showdestinations->tour_operator->getName() ?> est certifié !
+                                                <div class="tooltip-arrow" data-popper-arrow></div>
+                                            </div>
+                                        </a>
+                                    <?php
+                                    }else{
+                                        echo $Showdestinations->tour_operator->getName(); // TODO: bug here
+                                    }
+                                }
+                                ?>
                             </th>
                             <td class="px-12 py-4 font-medium text-right whitespace-nowrap">
                                 <?= $Showdestinations->getLocation()  .' '. $Showdestinations->getOperatorId()?>
@@ -116,6 +132,20 @@
             <?php } ?>
         </div>
     </main>
+
+<!--//        if ($isPremium->getCertificate()) {-->
+<!--//            echo '<div class="bg-gray-800 text-white text-center p-4">-->
+<!--//            <div class="text-xl">-->
+<!--//                <span class="font-bold">Premium</span>-->
+<!--//                <span class="text-gray-500">-->
+<!--//                    <svg class="h-6 w-6 inline" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"/></svg>-->
+<!--//                </span>-->
+<!--//            </div>-->
+<!--//            <p class="text-sm">-->
+<!--//                This is a premium account.-->
+<!--//            </p>-->
+<!--//        </div>';-->
+<!--//        }-->
 
 
 
