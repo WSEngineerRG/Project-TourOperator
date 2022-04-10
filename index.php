@@ -35,7 +35,7 @@
 
     <nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-800">
         <div class="container flex flex-wrap justify-between items-center mx-auto">
-            <a href="https://flowbite.com" class="flex items-center">
+            <a href="" class="flex items-center">
                 <img src="https://imgs.search.brave.com/Rtw-bp76moy0ybohQp2u9cPp5sIlh2cVyJ0D3GayYfc/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly9hdHBp/bnRlcm5hdGlvbmFs/LmNvLnphL3dwLWNv/bnRlbnQvdXBsb2Fk/cy8yMDE3LzEwL2Fp/cnBsYW5lX3Rha2Vv/ZmYxNjAwLnBuZw" class="mr-3 h-6 sm:h-9" alt="Logo">
                 <span class="text-black self-center text-xl font-semibold whitespace-nowrap">TourOperator</span>
             </a>
@@ -131,7 +131,7 @@
                 <div class="shadow-md m-5 max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
                     <div>
                         <img class="rounded-t-lg"
-                             src="<?= $Showdestinations->getImage() ?>" alt=".<?= $Showdestinations->getLocation() ?>.">
+                             src="<?= $Showdestinations->getImage() ?>" alt=".<?= $Showdestinations->getLocation() ?>."><!-- Make good Url in bdd if img don't load -->
                     </div>
                     <div class="p-5">
                         <div>
@@ -161,7 +161,7 @@
     <!--Footer-->
     <footer class="p-4 bg-white rounded-lg shadow md:px-6 md:py-8 dark:bg-gray-800">
         <div class="sm:flex sm:items-center sm:justify-between">
-            <a href="https://flowbite.com" class="flex items-center mb-4 sm:mb-0">
+            <a href="" class="flex items-center mb-4 sm:mb-0">
                 <img src="https://imgs.search.brave.com/Rtw-bp76moy0ybohQp2u9cPp5sIlh2cVyJ0D3GayYfc/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly9hdHBp/bnRlcm5hdGlvbmFs/LmNvLnphL3dwLWNv/bnRlbnQvdXBsb2Fk/cy8yMDE3LzEwL2Fp/cnBsYW5lX3Rha2Vv/ZmYxNjAwLnBuZw"
                      class="mr-3 h-8" alt="Flowbite Logo">
                 <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span>
@@ -183,7 +183,7 @@
         </div>
         <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8">
         <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2022 <a
-                href="https://flowbite.com" class="hover:underline">Tour-Operator™</a>. All Rights Reserved.
+                href="" class="hover:underline">Tour-Operator™</a>. All Rights Reserved.
 </span>
     </footer>
     <!--End Footer-->

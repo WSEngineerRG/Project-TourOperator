@@ -161,17 +161,6 @@ class Manager
         return $destinations;
     }
 
-    public function getScore()
-    {
-        $query = "SELECT * FROM comparo_full.score";
-        $result = $this->db_query($query);
-        $scores = [];
-        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-            $scores[] = new Score($row);
-        }
-        return $scores;
-    }
-
     public function getReviews($id): array
     {
         $query = "SELECT * FROM comparo_full.review INNER JOIN comparo_full.author ON comparo_full.review.author_id = comparo_full.author.id WHERE comparo_full.review.tour_operator_id='$id'";
@@ -188,13 +177,25 @@ class Manager
 
     public function getScoreById($id): array
     {
-        $query = "SELECT * FROM comparo_full.score INNER JOIN comparo_full.author ON comparo_full.score.author_id = comparo_full.author.id WHERE comparo_full.score.tour_operator_id='$id')";
+        $query = "SELECT * FROM comparo_full.score INNER JOIN comparo_full.author ON comparo_full.score.author_id = comparo_full.author.id WHERE comparo_full.score.tour_operator_id='$id'";
         $result = $this->db_query($query);
         $scores = [];
         while ($row = $result->fetch(\PDO::FETCH_ASSOC)) {
             $score = new Score($row);
             $author = new Author($row);
             $score->Author = $author;
+            $scores[] = $score;
+        }
+        return $scores;
+    }
+
+    public function getScoreByAuthorId($id): array
+    {
+        $query = "SELECT value FROM comparo_full.score WHERE author_id = $id";
+        $result = $this->db_query($query);
+        $scores = [];
+        while ($row = $result->fetch(\PDO::FETCH_ASSOC)) {
+            $score = new Score($row);
             $scores[] = $score;
         }
         return $scores;
@@ -247,7 +248,6 @@ class Manager
         $result = $this->db_query($query);
         return $result->fetch(PDO::FETCH_ASSOC);
     }
-
 
     //Update
 

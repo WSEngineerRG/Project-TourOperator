@@ -21,7 +21,7 @@
     <body class="dark:bg-zinc-900 text-white dark:text-black">
     <nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
         <div class="container flex flex-wrap justify-between items-center mx-auto">
-            <a href="https://flowbite.com" class="flex items-center">
+            <a href="" class="flex items-center">
                 <img src="https://imgs.search.brave.com/Rtw-bp76moy0ybohQp2u9cPp5sIlh2cVyJ0D3GayYfc/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly9hdHBp/bnRlcm5hdGlvbmFs/LmNvLnphL3dwLWNv/bnRlbnQvdXBsb2Fk/cy8yMDE3LzEwL2Fp/cnBsYW5lX3Rha2Vv/ZmYxNjAwLnBuZw"
                      class="mr-3 h-6 sm:h-9" alt="TourOperator Logo">
                 <span class="text-black self-center text-xl font-semibold whitespace-nowrap">TourOperator</span>

@@ -4,7 +4,6 @@
     $manager = new Manager($db);
     $getOperators = $manager->getAllOperator();
     $getDestinations = $manager->getOperatorByDestination();
-    $getScore = $manager->getScore();
     $countReviews = $manager->countReviews();
 ?>
 <doctype html>
@@ -25,7 +24,7 @@
     <body class="dark:bg-zinc-900 text-white dark:text-black">
     <nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
         <div class="container flex flex-wrap justify-between items-center mx-auto">
-            <a href="https://flowbite.com" class="flex items-center">
+            <a href="" class="flex items-center">
                 <img src="https://imgs.search.brave.com/Rtw-bp76moy0ybohQp2u9cPp5sIlh2cVyJ0D3GayYfc/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly9hdHBp/bnRlcm5hdGlvbmFs/LmNvLnphL3dwLWNv/bnRlbnQvdXBsb2Fk/cy8yMDE3LzEwL2Fp/cnBsYW5lX3Rha2Vv/ZmYxNjAwLnBuZw"
                      class="mr-3 h-6 sm:h-9" alt="TourOperator Logo">
                 <span class="text-black self-center text-xl font-semibold whitespace-nowrap">TourOperator</span>
@@ -164,7 +163,7 @@
                         </div>
                     </div>
                     <div class="flex items-center mb-1">
-                        <!---//TODO: Add rating system--->
+                        <!---//TODO: Add rating system test in dash.php--->
                     </div>
                     <footer class="mb-5 text-sm text-gray-400"><p>Envoyer depuis la France le  <time datetime="<?= $review->getSendAt() ?>"><?= $review->getSendAt() ?></time></p></footer>
                     <p class="mb-2 font-light text-gray-400"><?= $review->getMessage() ?>.</p>
@@ -187,22 +186,46 @@
         </button>
     </div>
     <?php //Paramètres ajout review
+    //    if (isset($_POST['name']) && isset($_POST['Avis'])) {
+    //        if ($manager->getAuthorByName($_POST['name']) == null) {
+    //            $id = $db->lastinsertid();
+    //            $name = $_POST['name'];
+    //
+    //            $query = "INSERT INTO comparo_full.author (`id`, `name`) VALUES (?,?)";
+    //            $manager->db_prepare($query)->execute([$id, $name]);
+    //        }
+    //        if (isset($name) && !empty($name) && !empty($_POST['Avis']) && $manager->getAuthorByName($name) != null) {
+    //            $message = $_POST['Avis'];
+    //            $id = $_GET['id'];
+    //            $author_id = $manager->getAuthorByName($_POST['name']);
+    //            $manager->addReview($message, $id, $author_id);
+    //        }// TODO: Olded code !
+
+
     if (isset($_POST['name']) && isset($_POST['Avis'])) {
-        if ($manager->getAuthorByName($_POST['name']) == null) {
-            $id = $db->lastinsertid();
-            $name = $_POST['name'];
+        $name = $_POST['name'];
+        $message = $_POST['Avis'];
+        $id = $_POST['id'];
+        $score = $_POST['rating3'];
+        $author_id = $manager->getAuthorByName($name);
+
+        $author_exist = $manager->ifAuthorExist($name);
+        $verify = isset($name) && isset($message) && isset($id) && isset($score) && !empty($name) && !empty($message) && !empty($id) && !empty($score);
+
+
+        if ($author_exist == false && $verify == true) {
+            $id = $this->db->lastinsertid();
 
             $query = "INSERT INTO comparo_full.author (`id`, `name`) VALUES (?,?)";
-            $manager->db_prepare($query)->execute([$id, $name]);
+            $this->db_prepare($query)->execute([$id, $name]);
         }
-        if (isset($name) && !empty($name) && !empty($_POST['Avis']) && $manager->getAuthorByName($name) != null) {
-            $message = $_POST['Avis'];
-            $id = $_GET['id'];
-            $author_id = $manager->getAuthorByName($_POST['name']);
-            $manager->addReview($message, $id, $author_id);
+        if ($verify && $manager->getAuthorByName($name) != null) {
+            $manager->addReview($message, $id, $author_id['id']);
+            $manager->addScore($id, $score, $author_id['id']);
+            header('Location: ../../index.php');
+
         }
-    ?>
-<?php } ?>
+    } ?>
 
 
 <!--    --><?php
@@ -223,7 +246,7 @@
     <!--Footer-->
     <footer class="p-4 bg-white rounded-lg shadow md:px-6 md:py-8 dark:bg-gray-800">
         <div class="sm:flex sm:items-center sm:justify-between">
-            <a href="https://flowbite.com" class="flex items-center mb-4 sm:mb-0">
+            <a href="" class="flex items-center mb-4 sm:mb-0">
                 <img src="https://imgs.search.brave.com/Rtw-bp76moy0ybohQp2u9cPp5sIlh2cVyJ0D3GayYfc/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly9hdHBp/bnRlcm5hdGlvbmFs/LmNvLnphL3dwLWNv/bnRlbnQvdXBsb2Fk/cy8yMDE3LzEwL2Fp/cnBsYW5lX3Rha2Vv/ZmYxNjAwLnBuZw"
                      class="mr-3 h-8" alt="Flowbite Logo">
                 <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span>
@@ -245,7 +268,7 @@
         </div>
         <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8">
         <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2022 <a
-                    href="https://flowbite.com" class="hover:underline">Tour-Operator™</a>. All Rights Reserved.
+                    href="" class="hover:underline">Tour-Operator™</a>. All Rights Reserved.
 </span>
     </footer>
 
