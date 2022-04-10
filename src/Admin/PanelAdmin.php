@@ -210,6 +210,9 @@
                 <thead class="text-xs uppercase bg-gray-700 text-gray-400">
                 <tr>
                     <th scope="col" class="px-6 py-3">
+                        Certificat
+                    </th>
+                    <th scope="col" class="px-6 py-3">
                         Operator Id
                     </th>
                     <th scope="col" class="px-6 py-3">
@@ -219,39 +222,85 @@
                         Operator Image
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        <span class="sr-only">Edit</span>
+                        <span>Edit</span>
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Delete
                     </th>
                 </tr>
                 </thead>
                 <?php foreach ($getOperators as $ShowOperators) { ?>
                 <tbody>
                 <tr class="border-b bg-gray-800 border-gray-700">
-                    <th scope="row" class="px-6 py-4 font-medium text-white whitespace-nowrap">
+                    <td scope="row" class="px-6 py-4">
+                        <?php
+                          if ($manager->getCertificate($ShowOperators->getId())) {?>
+                                <span data-tooltip-target="tooltip-left" data-tooltip-placement="left" class="text-green-500 hover:cursor-pointer">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg></span>
+                                <div id="tooltip-left" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white rounded-lg shadow-sm opacity-0 tooltip bg-gray-700">
+                                      Cet Operator est certifié !
+                                    <div class="tooltip-arrow" data-popper-arrow></div>
+                                </div>
+                        <?php } else { ?>
+                                <span data-tooltip-target="tooltip-random" data-tooltip-placement="left" class="text-red-500 hover:cursor-pointer">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg></span>
+                                <div id="tooltip-random" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700">
+                                      Cet Operator n'est pas certifié !
+                                    <div class="tooltip-arrow" data-popper-arrow></div>
+                                </div>
+                         <?php } ?>
+                    </td>
+                    <th  class="px-6 py-4 font-medium text-center text-white whitespace-nowrap">
                         <?= $ShowOperators->getId() ?>
                     </th>
                     <td class="px-6 py-4">
                         <?= $ShowOperators->getName() ?>
-                        <?php
-                          if ($manager->getCertificate($ShowOperators->getId())) {
-                              echo '<span data-tooltip-target="tooltip-default" class="text-green-500 hover:cursor-pointer">⭐</span>';?>
-                                <div id="tooltip-default" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700">
-                                      Cet Operator est certifié !
-                                    <div class="tooltip-arrow" data-popper-arrow></div>
-                                </div>
-                        <?php
-                          }
-                        ?>
                     </td>
                     <td class="px-6 py-4">
                         <?= $ShowOperators->getImage() ?>
                     </td>
-                    <td class="px-6 py-4 text-right">
+                    <td class="px-6 py-4">
                         <form method="get" action="Edit_Operator.php?id_Operator=<?= $ShowOperators->getId() ?>">
                             <input type="hidden" name="id_Operator" value="<?= $ShowOperators->getId() ?>">
-                            <button type="submit" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</button>
+                            <button type="submit" class="font-medium text-blue-500 ml-2">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            </button>
                         </form>
                     </td>
+                    <td class="px-6 py-4">
+                        <form action="../Process/Delete_Operator.php" method="post">
+                            <input type="hidden" name="id_Operator" value="<?= $ShowOperators->getId() ?>">
+                            <button type="button" data-modal-toggle="popup-modal" class="font-medium text-red-500 ml-2">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                            </button>
+                    </td>
                 </tr>
+                <!--//TODO Delete operator are good but modal does not get good id  always get first id ! -->
+                <!-- Delete Product Modal -->
+                <div id="popup-modal" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 md:inset-0 h-modal md:h-full">
+                    <div class="relative p-4 w-full max-w-md h-full md:h-auto">
+                        <!-- Modal content -->
+                        <div class="relative rounded-lg shadow bg-gray-700">
+                            <!-- Modal header -->
+                            <div class="flex justify-end p-2">
+                                <button type="button" class="text-gray-400 bg-transparent rounded-lg text-sm p-1.5 ml-auto inline-flex items-center hover:bg-gray-800 hover:text-white" data-modal-toggle="popup-modal">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                                </button>
+                            </div>
+                            <!-- Modal body -->
+                            <div class="p-6 pt-0 text-center">
+                                <svg class="mx-auto mb-4 w-14 h-14 text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <h3 class="mb-5 text-lg font-normal text-gray-400">Are you sure you want to delete <?= $ShowOperators->getId() ?>?</h3>
+                                <button data-modal-toggle="popup-modal" type="button" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
+                                    Yes, I'm sure
+                                </button>
+                                <button data-modal-toggle="popup-modal" type="button" class=" focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border  text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 bg-gray-700 text-gray-300 border-gray-500 hover:text-white hover:bg-gray-600 focus:ring-gray-600">No, cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <?php } ?>
 
 
@@ -299,6 +348,8 @@
                             </tr>
                             <?php } ?>
     </main>
+
+
 
 
 
