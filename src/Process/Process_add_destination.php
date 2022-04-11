@@ -11,7 +11,7 @@ $newDestinationsTid = $_POST['New_Destination_Tid'];
 
 if (isset($newDestinationsName) && !empty($newDestinationsName) && isset($newDestinationsPrice) && !empty($newDestinationsPrice) && isset($newDestinationsImage) && !empty($newDestinationsImage) && isset($newDestinationsTid) && !empty($newDestinationsTid)) {
     $manager->addDestination($newDestinationsName, $newDestinationsPrice, $newDestinationsTid, $newDestinationsImage);
-    header('Location: ./PanelAdmin.php?success=Destination ajoutée');
+    header('Location: ../Admin/PanelAdmin.php?success=Destination ajoutée');
 } else {
     header('Location: ../Admin/PanelAdmin.php?error=Lors de l\'ajout d\'une destination, il y a eu un problème');
 }
