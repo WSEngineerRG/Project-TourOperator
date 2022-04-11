@@ -27,21 +27,67 @@ class Manager
         return $this->db->prepare($query);
     }
 
+    //Count the number of rows in a table
+
+    public function countOperator(): int
+    {
+        $query = "SELECT COUNT(*) FROM comparo_full.tour_operator";
+        $result = $this->db_query($query);
+        $row = $result->fetch();
+        return $row[0];
+    }
+
+    public function countPremiumOperator()
+    {
+        // $query = "SELECT COUNT(*) FROM comparo_full.tour_operator WHERE is_premium = 1"; Old method !
+        $query = "SELECT COUNT(*) FROM comparo_full.tour_operator where id = comparo_full.certificate.tour_operator_id";
+        $result = $this->db_query($query);
+        $row = $result->fetch();
+        return $row[0];
+    }
+
+    public function countDestination(): int
+    {
+        $query = "SELECT COUNT(*) FROM comparo_full.destination";
+        $result = $this->db_query($query);
+        $row = $result->fetch();
+        return $row[0];
+    }
+
+    public function countReviews(): int
+    {
+        $id = $_GET['id'];
+        $query = "SELECT COUNT(*) FROM comparo_full.review WHERE comparo_full.review.tour_operator_id = $id";
+        $result = $this->db_query($query);
+        $row = $result->fetch();
+        return $row[0];
+    }
+
+
+
+
+    //Options
+    public function ifAuthorExist($name)
+    {
+        $query = "SELECT * FROM comparo_full.author WHERE name = '$name'";
+        $result = $this->db_query($query);
+        $results = $result->fetch(PDO::FETCH_ASSOC);
+        return $results;
+    }
+
+    /**
+     * @param mixed $db
+     */
+    public function setDb(PDO $db): void
+    {
+        $this->db = $db;
+    }
+
+    //Add
     public function addOperator($name, $link): void
     {
         $query = "INSERT INTO comparo_full.tour_operator (`name`, `link`, `id`) VALUES (?,?,?)";
         $this->db_prepare($query)->execute([$name, $link, $this->db->lastInsertId()]);
-    }
-
-    public function getAllOperator(): array
-    {
-        $query = "SELECT * FROM comparo_full.tour_operator";
-        $result = $this->db_query($query);
-        $operators = [];
-        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-            $operators[] = new Tour_operator($row);
-        }
-        return $operators;
     }
 
     public function addDestination($location, $price, $id, $image): void
@@ -53,7 +99,55 @@ class Manager
     public function addReview($message, $id, $author_id): void
     {
         $query = "INSERT INTO comparo_full.review (`message`, `tour_operator_id`, `author_id`) VALUES (?,?,?)";
-        $this->db_prepare($query)->execute([$message, $id, $author_id['id']]);
+        $this->db_prepare($query)->execute([$message, $id, $author_id]);
+    }
+
+    public function addCertificate($id, $date, $sign): void
+    {
+        $query = "INSERT INTO comparo_full.certificate (`tour_operator_id`, `expires_at`, `signatory`) VALUES (?,?,?)";
+        $this->db_prepare($query)->execute([$id, $date, $sign]);
+    }
+
+    public function addScore($id, $score, $author_id): void
+    {
+        $query = "INSERT INTO comparo_full.score (`value`, `author_id`) VALUES ($score, $author_id) WHERE tour_operator_id = $id";
+        $this->db_prepare($query);
+    }
+
+    //Get
+    public function getSendAtById($id)
+    {
+        $query = "SELECT comparo_full.review.send_at FROM comparo_full.review WHERE id = $id";
+        $result = $this->db_query($query);
+        $results = $result->fetch(PDO::FETCH_ASSOC);
+        return $results;
+    }
+
+    public function getOperatorById($id)
+    {
+        $query = "SELECT * FROM comparo_full.tour_operator WHERE id = $id";
+        $result = $this->db_query($query);
+        $results = $result->fetch(PDO::FETCH_ASSOC);
+        return $results;
+    }
+
+    public function getDestinationById($id)
+    {
+        $query = "SELECT * FROM comparo_full.destination WHERE id = $id";
+        $result = $this->db_query($query);
+        $results = $result->fetch(PDO::FETCH_ASSOC);
+        return $results;
+    }
+
+    public function getAllOperator(): array
+    {
+        $query = "SELECT * FROM comparo_full.tour_operator";
+        $result = $this->db_query($query);
+        $operators = [];
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            $operators[] = new Tour_operator($row);
+        }
+        return $operators;
     }
 
     public function getAllDestination(): array
@@ -81,6 +175,32 @@ class Manager
         return $reviews;
     }
 
+    public function getScoreById($id): array
+    {
+        $query = "SELECT * FROM comparo_full.score INNER JOIN comparo_full.author ON comparo_full.score.author_id = comparo_full.author.id WHERE comparo_full.score.tour_operator_id='$id'";
+        $result = $this->db_query($query);
+        $scores = [];
+        while ($row = $result->fetch(\PDO::FETCH_ASSOC)) {
+            $score = new Score($row);
+            $author = new Author($row);
+            $score->Author = $author;
+            $scores[] = $score;
+        }
+        return $scores;
+    }
+
+    public function getScoreByAuthorId($id): array
+    {
+        $query = "SELECT value FROM comparo_full.score WHERE author_id = $id";
+        $result = $this->db_query($query);
+        $scores = [];
+        while ($row = $result->fetch(\PDO::FETCH_ASSOC)) {
+            $score = new Score($row);
+            $scores[] = $score;
+        }
+        return $scores;
+    }
+
     public function getOperatorByDestination(): array
     {
         $location = $_GET['City_name'];
@@ -98,14 +218,14 @@ class Manager
 
     public function getCertificate($id): array
     {
-        $query = "SELECT * FROM comparo_full.certificate INNER JOIN  comparo_full.destination ON comparo_full.destination.tour_operator_id = comparo_full.certificate.tour_operator_id WHERE comparo_full.destination.id='$id'";
+        $query = "SELECT * FROM comparo_full.certificate INNER JOIN  comparo_full.tour_operator ON comparo_full.tour_operator.id = comparo_full.certificate.tour_operator_id WHERE comparo_full.tour_operator.id='$id'";
         $result = $this->db_query($query);
         $certificates = [];
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-            $destinations = new Destination($row);
+            $tour_operator = new Tour_operator($row);
             $certificate = new Certificate($row);
-            $destinations->certificate = $certificate;
-            $certificates[] = $destinations;
+            $tour_operator->Certificate = $certificate;
+            $certificates[] = $tour_operator;
         }
         return $certificates;
     }
@@ -129,47 +249,32 @@ class Manager
         return $result->fetch(PDO::FETCH_ASSOC);
     }
 
+    //Update
 
-
-    public function countOperator(): int
+    public function updateOperatorById($id, $name, $link, $image)
     {
-        $query = "SELECT COUNT(*) FROM comparo_full.tour_operator";
+        $query = "UPDATE comparo_full.tour_operator SET comparo_full.tour_operator.name = '$name', comparo_full.tour_operator.link = '$link', comparo_full.tour_operator.image = '$image' WHERE comparo_full.tour_operator.id = $id";
         $result = $this->db_query($query);
-        $row = $result->fetch_row();
-        return $row[0];
+        return $result;
     }
 
-    public function countPremiumOperator()
+    public function updateDestinationById($id, $location, $price, $operator_id, $image)
     {
-        // $query = "SELECT COUNT(*) FROM comparo_full.tour_operator WHERE is_premium = 1"; Old method !
-        $query = "SELECT COUNT(*) FROM comparo_full.tour_operator where id = comparo_full.certificate.tour_operator_id";
+        $query = "UPDATE comparo_full.destination SET comparo_full.destination.location = '$location', comparo_full.destination.price = '$price', comparo_full.destination.tour_operator_id = '$operator_id', comparo_full.destination.image = '$image' WHERE comparo_full.destination.id = $id";
         $result = $this->db_query($query);
-        $row = $result->fetch_row();
-        return $row[0];
+        return $result;
     }
 
-    public function countDestination(): int
+    //Delete
+
+    public function deleteOperatorById($id)
     {
-        $query = "SELECT COUNT(*) FROM comparo_full.destination";
+        $query = "DELETE FROM comparo_full.tour_operator WHERE id = $id";
         $result = $this->db_query($query);
-        $row = $result->fetch_row();
-        return $row[0];
+        var_dump($result);
+        die;
+        return $result;
     }
 
-    public function countReviews(): int
-    {
-        $query = "SELECT COUNT(*) FROM comparo_full.review";
-        $result = $this->db_query($query);
-        $row = $result->fetch();
-        return $row[0];
-    }
-
-    /**
-     * @param mixed $db
-     */
-    public function setDb(PDO $db): void
-    {
-        $this->db = $db;
-    }
 }
 
