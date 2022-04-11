@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le : lun. 11 avr. 2022 à 07:23
+-- Généré le : lun. 11 avr. 2022 à 07:44
 -- Version du serveur :  5.7.34
 -- Version de PHP : 8.0.8
 
@@ -89,13 +89,13 @@ CREATE TABLE `destination` (
 --
 
 INSERT INTO `destination` (`id`, `location`, `price`, `tour_operator_id`, `image`) VALUES
-(1, 'Tokyo', 1650, 2, 'shorturl.at/djxQS'),
-(2, 'Kyoto', 1100, 2, 'shorturl.at/kwAEJ'),
-(3, 'Kobe', 1390, 1, 'shorturl.at/sxEG5'),
-(4, 'Kobe', 2390, 3, 'shorturl.at/sxEG5'),
-(5, 'Tokyo', 2000, 3, 'shorturl.at/djxQS'),
-(7, 'Kyoto', 1200, 3, 'shorturl.at/kwAEJ'),
-(8, 'Kyoto', 1200, 2, 'shorturl.at/kwAEJ');
+(1, 'Tokyo', 1650, 2, 'https://cdn.pixabay.com/photo/2020/07/14/16/02/manga-5404746_960_720.jpg'),
+(2, 'Kyoto', 1100, 2, 'https://cdn.pixabay.com/photo/2019/02/02/07/00/kinkaku-ji-3970248_960_720.jpg'),
+(3, 'Kobe', 1390, 1, 'https://cdn.pixabay.com/photo/2017/06/17/09/23/kobe-2411608_960_720.jpg'),
+(4, 'Kobe', 2390, 3, 'https://cdn.pixabay.com/photo/2017/06/17/09/23/kobe-2411608_960_720.jpg'),
+(5, 'Tokyo', 2000, 3, 'https://cdn.pixabay.com/photo/2020/07/14/16/02/manga-5404746_960_720.jpg'),
+(7, 'Kyoto', 1200, 3, 'https://cdn.pixabay.com/photo/2019/02/02/07/00/kinkaku-ji-3970248_960_720.jpg'),
+(8, 'Kyoto', 1200, 2, 'https://cdn.pixabay.com/photo/2019/02/02/07/00/kinkaku-ji-3970248_960_720.jpg');
 
 -- --------------------------------------------------------
 
@@ -237,7 +237,7 @@ ALTER TABLE `author`
 -- AUTO_INCREMENT pour la table `destination`
 --
 ALTER TABLE `destination`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT pour la table `review`
