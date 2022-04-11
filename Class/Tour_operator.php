@@ -8,23 +8,23 @@ class Tour_operator
     protected mixed $name;
     protected mixed $link;
     protected mixed $image;
-    protected mixed $certificate;
     protected mixed $destinations;
     protected mixed $reviews;
     protected mixed $scores;
 
+    public mixed $Certificate;
     // Methods
 
 
 //    protected bool $is_valid; simple version !
 
     // constructor
-    public function __construct(array $donnees)
+    public function __construct($donnees)
     {
         $this->hydrate($donnees);
     }
     // hydrate
-    public function hydrate(array $donnees)
+    public function hydrate($donnees)
     {
         $this->id = $donnees['id'];
         $this->name = $donnees['name'];
@@ -61,10 +61,10 @@ class Tour_operator
 
     function getCertificate()
     {
-        return $this->certificate;
+        return $this->Certificate;
     }
 
-    function getDestinations()
+    function getAllDestination()
     {
         return $this->destinations;
     }
@@ -109,7 +109,7 @@ class Tour_operator
 
     function setCertificate($certificate)
     {
-        $this->certificate = $certificate;
+        $this->Certificate = $certificate;
     }
 
     function setDestinations($destinations)

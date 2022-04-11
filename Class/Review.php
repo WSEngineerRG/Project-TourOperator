@@ -4,7 +4,10 @@ class Review
 {
     protected mixed $id;
     protected mixed $message;
-    protected mixed $author;
+    protected mixed $send_at;
+    protected mixed $author_id;
+    protected mixed $tour_operator_id;
+    public mixed $Author;
 
     function __construct(array $donnees)
     {
@@ -36,17 +39,31 @@ class Review
     /**
      * @return mixed
      */
-    public function getAuthor(): mixed
+    public function getMessage(): mixed
     {
-        return $this->author;
+        return $this->message;
     }
 
     /**
      * @return mixed
      */
-    public function getMessage(): mixed
+    public function getSendAt(): mixed
     {
-        return $this->message;
+        return $this->send_at;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAuthorId(): mixed
+    {
+        return $this->author_id;
+    }
+
+
+    public function getOperatorId(): mixed
+    {
+        return $this->tour_operator_id;
     }
 
     /**
@@ -58,18 +75,35 @@ class Review
     }
 
     /**
-     * @param mixed $author
-     */
-    public function setAuthor(mixed $author): void
-    {
-        $this->author = $author;
-    }
-
-    /**
      * @param mixed $message
      */
     public function setMessage(mixed $message): void
     {
         $this->message = $message;
+    }
+
+    /**
+     * @param mixed $send_at
+     */
+    public function setSend_at(mixed $send_at): void
+    {
+        $this->send_at = $send_at = date("F j, Y, g:i a");
+    }
+
+    /**
+     * @param mixed $author
+     */
+    public function setAuthorId(mixed $author): void
+    {
+        $this->author_id = $author;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function setTour_operator_id($tour_operator_id): void
+    {
+        $this->tour_operator_id = $tour_operator_id;
     }
 }

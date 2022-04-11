@@ -5,13 +5,16 @@ class Destination
     protected mixed $id;
     protected mixed $location;
     protected mixed $price;
+    protected mixed $image;
+    protected mixed $tour_operator_id;
+    public mixed $tour_operator;
 
-    function __construct(array $donnees)
+    function __construct($donnees)
     {
         $this->hydrate($donnees);
     }
 
-    public function hydrate(array $donnees)
+    public function hydrate($donnees)
     {
         foreach ($donnees as $key => $value)
         {
@@ -24,10 +27,12 @@ class Destination
         }
     }
 
+
     function getId()
     {
         return $this->id;
     }
+
 
     function getLocation()
     {
@@ -39,6 +44,17 @@ class Destination
         return $this->price;
     }
 
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    public function getOperatorId()
+    {
+        return $this->tour_operator_id;
+    }
+
     /**
      * @param mixed $id
      */
@@ -46,6 +62,7 @@ class Destination
     {
         $this->id = $id;
     }
+
 
     /**
      * @param mixed $location
@@ -61,6 +78,22 @@ class Destination
     public function setPrice(mixed $price): void
     {
         $this->price = $price;
+    }
+
+    /**
+     * @param mixed $image
+     */
+    public function setImage(mixed $image): void
+    {
+        $this->image = $image;
+    }
+
+    /**
+     * @param mixed $tour_operator_id
+     */
+    public function setTour_operator_id(mixed $tour_operator_id): void
+    {
+        $this->tour_operator_id = $tour_operator_id;
     }
 
 }
